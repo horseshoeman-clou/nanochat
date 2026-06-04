@@ -1,22 +1,35 @@
 from model.dummy_model import get_response
 
-def handle_command(input):
-	if input=="/help":
+def handle_command(command,history):
+	if command=="/help":
 		return"""
 	Available commands:
 	/help - Show available commands
 	/exit - Exit NanoChat
-	"""
-	elif input=="/exit":
+	/history - Show chat history"""
+	elif command=="/exit":
 		return "EXIT_COMMAND"
+
+	elif command=="/history":
+		history_text="*** Chat History ***\n"
+		if not history:
+			history_text+="No conversation history yet. Type something to start chatting\n"
+
+		for speaker,message in history:
+			history_text+= f"{speaker}: {message}\n"
+
+		return history_text
 
 	else:
 		return f"""
-	No command called {input}.
+	No command called {command}.
 	Type /help to see available commands.
 	"""
 
 def start_chat():
+
+	history=[]
+
 	print("""
 	Welcome to NanoChat!
 	Type /help for available commands.\n""")
@@ -25,12 +38,15 @@ def start_chat():
 		user_input=input("You: ")
 
 		if user_input.lower().startswith('/'):
-			response=handle_command(user_input.lower())
-
-			if response=="EXIT_COMMAND":
+			commandResponse=handle_command(user_input.lower(),history)
+			if commandResponse=="EXIT_COMMAND":
 				break
-			print(response)
-			continue
 
+			print(commandResponse)
+			continue
+		history.append(("You",user_input))
 		response=get_response(user_input)
+
+		history.append(("Bot",response))
 		print(f"Bot: {response}")
+
