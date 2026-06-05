@@ -20,6 +20,9 @@ def handle_command(command,history):
 
 		return history_text
 
+	elif command=='/clear':
+			return 'CLEAR_HISTORY'
+
 	else:
 		return f"""
 	No command called {command}.
@@ -41,6 +44,11 @@ def start_chat():
 			commandResponse=handle_command(user_input.lower(),history)
 			if commandResponse=="EXIT_COMMAND":
 				break
+
+			elif commandResponse=='CLEAR_HISTORY':
+				history.clear()
+				print("Cleared history.")
+				continue
 
 			print(commandResponse)
 			continue
