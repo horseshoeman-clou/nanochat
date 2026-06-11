@@ -1,4 +1,6 @@
 from model.dummy_model import get_response
+from utils.storage import save_chat
+
 
 def handle_command(command,history):
 	if command=="/help":
@@ -6,7 +8,9 @@ def handle_command(command,history):
 	Available commands:
 	/help - Show available commands
 	/exit - Exit NanoChat
-	/history - Show chat history"""
+	/history - Show chat history
+	/save - Save chat history"""
+
 	elif command=="/exit":
 		return "EXIT_COMMAND"
 
@@ -22,6 +26,9 @@ def handle_command(command,history):
 
 	elif command=='/clear':
 			return 'CLEAR_HISTORY'
+
+	elif command=='/save':
+			return 'SAVE_HISTORY'
 
 	else:
 		return f"""
@@ -48,6 +55,15 @@ def start_chat():
 			elif commandResponse=='CLEAR_HISTORY':
 				history.clear()
 				print("Cleared history.")
+				continue
+
+			elif commandResponse=='SAVE_HISTORY':
+				result=save_chat(history)
+
+				if result:
+					print("History saved successfully")
+				else:
+					print("Failed to save history")
 				continue
 
 			print(commandResponse)

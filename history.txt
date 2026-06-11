@@ -1,0 +1,8 @@
+You|clear
+Bot|I don't understand yet.
+You|hello
+Bot|Hi there!
+You|how are you?
+Bot|I am fine!
+You|bye
+Bot|Bye bye
