@@ -10,3 +10,19 @@ def save_chat(history):
 
 	except Exception:
 		return False
+
+def load_chat():
+
+	try:
+		history=[]
+
+		with open("history.txt",'r') as file:
+
+			for line in file:
+				speaker,message=line.strip().split('|')
+				history.append((speaker,message))
+
+		return history
+
+	except Exception:
+		return None
