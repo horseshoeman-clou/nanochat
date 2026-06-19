@@ -1,11 +1,14 @@
 # NanoChat
 
-A minimal chat system built from scratch.
+A modular command-line chatbot built in Python
 
 ## Current Features
-- CLI-based chat
-- Basic input/output loop
-- Dummy response model
+- CLI-based chat interface
+- Command system ( /help, /save, /load, /clear)
+- Conversation history
+- Local LLM integration via Ollama 
+- Gemma 3 1B backend
 
 ## Goal
-To evolve into a modular chat system with real text generation.
+
+To explore chatbot architecture, local LLM deployment, and modular software design,
