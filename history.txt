@@ -1,8 +1,2 @@
-You|clear
-Bot|I don't understand yet.
 You|hello
-Bot|Hi there!
-You|how are you?
-Bot|I am fine!
-You|bye
-Bot|Bye bye
+Bot|Hello there! How's your day going so far? Is anything on your mind you'd like to chat about, or is there anything specific you need help with right now？ 😊 😄

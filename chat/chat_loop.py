@@ -1,4 +1,4 @@
-from model.dummy_model import get_response
+from model.llm_model import get_response
 from utils.storage import save_chat,load_chat
 
 
@@ -10,6 +10,7 @@ def handle_command(command,history):
 	/exit - Exit NanoChat
 	/history - Show chat history
 	/save - Save chat history
+	/clear - CLear saved history
 	/load - Load saved history"""
 
 	elif command=="/exit":
@@ -77,6 +78,9 @@ def start_chat():
 				if loaded_history is not None:
 					history=loaded_history
 					print("History loaded successfully.")
+
+					for speaker,message in history:
+						print(f"{speaker}:{message}")
 
 				else:
 					print("No saved history found.")

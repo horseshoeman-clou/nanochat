@@ -3,8 +3,8 @@ def save_chat(history):
 		with open("history.txt","w") as file:
 
 			for speaker,message in history:
-
-				file.write(f"{speaker}|{message}\n")
+				safe_message=message.replace("\n","\\n")
+				file.write(f"{speaker}|{safe_message}\n")
 
 			return True
 
@@ -19,10 +19,12 @@ def load_chat():
 		with open("history.txt",'r') as file:
 
 			for line in file:
-				speaker,message=line.strip().split('|')
+				speaker,message=line.strip().split('|',1)
+				message=message.replace("\\n",'\n')
 				history.append((speaker,message))
 
 		return history
 
-	except Exception:
+	except Exception as e:
+		print(e)
 		return None
